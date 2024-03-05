@@ -1,0 +1,55 @@
+
+body{
+    height: 600px;
+    width: 1024;
+    overflow: visible;
+}
+.scorePanel{
+    display: flex;
+    font-size: 40px;
+    justify-content: flex-start;
+    align-self: center;
+    font-family: "Micro 5", sans-serif;
+    font-size: 120px;
+    font-weight: 400;
+    margin-top: 0;
+    color: #FFFFFF;
+    background: transparent;
+    text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
+}
+.btnToggle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid rgb(255, 255, 255) 5px;
+    position: relative;
+    width: 100px;
+    top: 0;
+    left: 0;
+    height: 100px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    font-family: cursive;
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    height: 95vh;
+}
+
+@keyframes pulsate {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulsate {
+    animation: pulsate 1s infinite;
+}
