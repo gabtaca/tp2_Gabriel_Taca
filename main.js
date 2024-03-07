@@ -1,16 +1,21 @@
-const availableColors = ['#1d056b', '#0ad115', '#13e720', '#384fcc', '#2f39c1', '#261b76'];
+const availableColors = ['#e7d44b', '#774be7', '#b41818', '#22e01f', '#1a7ec1', '#261b76'];
 const btnToggle = document.querySelector('.btnToggle');
 const scoreHtml = document.querySelector('.scorePanel > span');
+const scoreboard = document.getElementById('scoreboard');
 
-let currentBgColorIndex = 0;
+let currentBgColorIndex = 0; 
 let currentBtnColorIndex = 0;
+
+// Variable pour indiquer si le jeu est en cours.
 let isRunning = true;
 let colorChangeInterval = setInterval(changeBgColor, 1500);
 let score = 0;
 let diffStep = 10;
+let scores = [];
 
+// Pop une alerte pour acceuillir le joueur. 
 document.addEventListener('DOMContentLoaded', function() {
-    alert('Score 5 points to win!');
+    alert('Score as many points as you can!');
 });
 
 function changeBgColor() {
@@ -22,7 +27,7 @@ function changeBgColor() {
 }
 
 function changeBtnColor() {
-    currentBtnColorIndex = Math.round(Math.random() * (availableColors.length - 1));
+    currentBtnColorIndex = Math.floor(Math.random() * availableColors.length);
     btnToggle.style.backgroundColor = availableColors[currentBtnColorIndex];
     btnToggle.classList.add('pulsate');
 
@@ -40,9 +45,13 @@ function changeBtnPosition() {
     const randomTop = Math.floor(Math.random() * (bodyHeight - buttonHeight));
     const randomLeft = Math.floor(Math.random() * (bodyWidth - buttonWidth));
 
+// Met les coordonnées au bouton.
+    btnToggle.style.position = 'absolute';
     btnToggle.style.top = `${randomTop}px`;
     btnToggle.style.left = `${randomLeft}px`;
 }
+
+// Démarrer le jeu
 function start() {
     changeBtnColor();
     changeBtnPosition();
@@ -51,6 +60,7 @@ function start() {
     isRunning = true;
 }
 
+// Fonction pour arrêter le jeu.
 function stop() {
     clearInterval(colorChangeInterval);
     btnToggle.innerHTML = 'start';
@@ -59,10 +69,16 @@ function stop() {
         score++;
         scoreHtml.innerHTML = score;
     } else {
-        score = 0;
-        scoreHtml.innerHTML = score;
+        const userName = prompt('Enter your name:');// Si les couleurs sont différentes, demande le nom du joueur.
+        if (userName !== null && userName.trim() !== '') {
+            scores.push({ name: userName, score: score });// Ajoute le score et le nom au tableau des scores.
+        }
+        score = 0;// Réinitialise le score.
+        scoreHtml.innerHTML = score;// Affiche le score mis à jour.
     }
+
     isRunning = false;
+    updateScoreboard();// Met à jour le tableau de scores.
 }
 
 btnToggle.addEventListener('click', () => {
@@ -75,26 +91,11 @@ btnToggle.addEventListener('click', () => {
 
 changeBtnColor();
 
-
-function win() {
-    alert('Congratulations! You won!');
-    score = 0;
-    scoreHtml.innerHTML = score;
-}
-
-function stop() {
-    clearInterval(colorChangeInterval);
-    btnToggle.innerHTML = 'start';
-
-    if (currentBgColorIndex === currentBtnColorIndex) {
-        score++;
-        scoreHtml.innerHTML = score;
-        if (score === 5) {
-            win();
-        }
-    } else {
-        score = 0;
-        scoreHtml.innerHTML = score;
-    }
-    isRunning = false;
+function updateScoreboard() {
+    scoreboard.innerHTML = '';
+    scores.forEach(score => {
+        const div = document.createElement('div');
+        div.textContent = `${score.name}: ${score.score}`;
+        scoreboard.appendChild(div);
+    });
 }

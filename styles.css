@@ -11,7 +11,7 @@ body{
     align-self: center;
     font-family: "Micro 5", sans-serif;
     font-size: 120px;
-    font-weight: 400;
+    font-weight: 200;
     margin-top: 0;
     color: #FFFFFF;
     background: transparent;
@@ -52,4 +52,17 @@ body{
 
 .pulsate {
     animation: pulsate 1s infinite;
+}
+#scoreboard{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #FFF;
+    font-size: 12px;
+    position: absolute;
+}
+.scoreboard{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #FFF;
+    font-size: larger;
+    margin-bottom: 0;
+    text-decoration: underline;
 }
