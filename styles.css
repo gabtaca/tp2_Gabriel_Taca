@@ -30,7 +30,9 @@ body{
     border-radius: 50%;
     font-size: 24px;
     cursor: pointer;
-    font-family: cursive;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: black;
+    font-weight: 700;
 }
 .wrapper{
     display: flex;
